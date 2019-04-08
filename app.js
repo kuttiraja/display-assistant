@@ -1,8 +1,9 @@
 const { server }  = require('./server')
-const { config, logger } = require('./core')
-const db = require('./db')
+const { config, logger } = require('./app/core')
+/*
+const db = require('./app/db')
 const mongoose = db.mongoose
-
+*/
 /*
 db.connect() 
   .then(() => {
