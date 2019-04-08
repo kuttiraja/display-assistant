@@ -18,7 +18,8 @@ db.connect()
 */
 
 
-server.listen(config.APP_PORT, () => logger.info(`app.listen() - App server started at [${config.APP_PORT}]`))
+server.listen(process.env.PORT, () => logger.info(`app.listen() - App server started at [${process.env.PORT}]`))
+//server.listen(config.APP_PORT, () => logger.info(`app.listen() - App server started at [${config.APP_PORT}]`))
 
 process.on('SIGTERM', () => {
     mongoose.disconnect()
