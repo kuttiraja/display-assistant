@@ -25,6 +25,11 @@ routeDir.map(route => {
         app.use(`/${route}`, router)
 })
 
+app.use("/", (req, res) => {
+    res.send("Hello World")
+}
+);
+
 logger.info(`server() - Logging enabled to [${config.LOG_TO_FILE_OR_CONSOLE}]`)
 app.use(morgan('combined', { stream: logger.stream }))
 
