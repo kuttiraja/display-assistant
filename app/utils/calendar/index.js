@@ -161,7 +161,7 @@ module.exports.upcomingEvents = async function(req,res, next) {
             }],
             session: req.body.session
           };
-          return res.json(sndrsp.sendResponse(responseJson, 1/*version*/));
+          return res.json(sndrsp.sendResponse(message, "V2"/*version*/, next));
 
         // res.status(200).send(message);
     });
