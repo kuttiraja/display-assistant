@@ -6,7 +6,7 @@ const getAssistantSchema = Joi.object({
 })
 
 const postAssistantSchema = Joi.object({
-    city: Joi.string().required(),
+    city: Joi.string().required().optional(),
 })
 
 
