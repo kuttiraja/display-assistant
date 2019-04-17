@@ -6,6 +6,6 @@ const { getAssistantSchema,
         } = require('./assistant-schemas')
 
 router.get('/', queryValidator(getAssistantSchema), getHandler)
-router.post('/', bodyValidator(postAssistantSchema), postHandler)
+router.post('/', postHandler)
 
 module.exports = router
