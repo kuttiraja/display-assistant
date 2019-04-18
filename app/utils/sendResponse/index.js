@@ -47,78 +47,42 @@ var sendResponse = function(responseToUser, version,  next) {
   //       responseJson.queryResult = responseToUser.queryResult;
   //     }
   // }
-   responseJson = {
-    "payload": {
-      "google": {
-        "expectUserResponse": true,
-        "systemIntent": {
-          "intent": "actions.intent.OPTION",
-          "data": {
-            "@type": "type.googleapis.com/google.actions.v2.OptionValueSpec",
-            "carouselSelect": {
-              "items": [
-                {
-                  "optionInfo": {
-                    "key": "SELECTION_KEY_ONE",
-                    "synonyms": [
-                      "synonym 1",
-                      "synonym 2",
-                      "synonym 3"
-                    ]
-                  },
-                  "description": "This is a description of a carousel item.",
-                  "image": {
-                    "url": "IMG_URL_AOG.com",
-                    "accessibilityText": "Image alternate text"
-                  },
-                  "title": "Title of First Carousel Item"
-                },
-                {
-                  "optionInfo": {
-                    "key": "SELECTION_KEY_GOOGLE_HOME",
-                    "synonyms": [
-                      "Google Home Assistant",
-                      "Assistant on the Google Home"
-                    ]
-                  },
-                  "description": "Google Home is a voice-activated speaker powered by the Google Assistant.",
-                  "image": {
-                    "url": "IMG_URL_GOOGLE_HOME.com",
-                    "accessibilityText": "Google Home"
-                  },
-                  "title": "Google Home"
-                },
-                {
-                  "optionInfo": {
-                    "key": "SELECTION_KEY_GOOGLE_PIXEL",
-                    "synonyms": [
-                      "Google Pixel XL",
-                      "Pixel",
-                      "Pixel XL"
-                    ]
-                  },
-                  "description": "Pixel. Phone by Google.",
-                  "image": {
-                    "url": "IMG_URL_GOOGLE_PIXEL.com",
-                    "accessibilityText": "Google Pixel"
-                  },
-                  "title": "Google Pixel"
-                }
-              ]
+  responseJson = {
+        "payload": {
+        "google": {
+            "expectUserResponse": true,
+            "richResponse": {
+                "items": [
+                    {
+                        "simpleResponse": {
+                            "textToSpeech": "This is a basic card example."
+                        }
+                    },
+                    {
+                        "basicCard": {
+                            "title": "Appointment Details",
+                            "subtitle": "Calendar Scan",
+                            "formattedText": "Okay. Let me have a quick scan on your calendar. Yeah. I see 2 upcoming trips. An appointment on May 1st   at Florida and another on May 5th at Houston. Could you please confirm which one is it ? ",
+                            "image": {
+                                "url": "https://miro.medium.com/max/1394/1*50rG5q86I99_o1vGGTying.png",
+                                "accessibilityText": "Image alternate text"
+                            },
+                            "buttons": [
+                                {
+                                    "title": "This is a button",
+                                    "openUrlAction": {
+                                        "url": "https://assistant.google.com/"
+                                    }
+                                }
+                            ],
+                            "imageDisplayOptions": "CROPPED"
+                        }
+                    }
+                ]
             }
-          }
-        },
-        "richResponse": {
-          "items": [
-            {
-              "simpleResponse": {
-                "textToSpeech": "This is a carousel example."
-              }
-            }
-          ]
         }
-      }
     }
+
   }
   
   console.log('Conversation Engine Response : ' + JSON.stringify(responseJson,undefined,2));
