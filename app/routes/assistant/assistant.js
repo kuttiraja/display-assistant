@@ -9,7 +9,8 @@ async function getHandler(req, res, next) {
         // res.send(200).send("Hello World")    
 }
 
-async function postHandler(req, res, next) {  
+async function postHandler(req, res, next) {
+	console.log('request: ', req)
         await calendar.upcomingEvents(req, res, next);
         
         // action = req.body.action
