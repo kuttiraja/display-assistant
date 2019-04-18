@@ -53,25 +53,26 @@ var sendResponse = function(responseToUser, version,  next) {
             "expectUserResponse": true,
             "richResponse": {
                 "items": [
-                    {
-                        "simpleResponse": {
-                            "textToSpeech": "This is a basic card example."
-                        }
-                    },
+                                {
+              "simpleResponse": {
+                "textToSpeech": "Sure, I can help you on that. Are you looking for sunscreen for any of your upcoming trip ?"
+              }
+            }
+,
                     {
                         "basicCard": {
-                            "title": "Appointment Details",
-                            "subtitle": "Calendar Scan",
-                            "formattedText": "Okay. Let me have a quick scan on your calendar. Yeah. I see 2 upcoming trips. An appointment on May 1st   at Florida and another on May 5th at Houston. Could you please confirm which one is it ? ",
-                            "image": {
-                                "url": "https://miro.medium.com/max/1394/1*50rG5q86I99_o1vGGTying.png",
-                                "accessibilityText": "Image alternate text"
-                            },
+                            "title": "Walbot",
+                           "formattedText": "Sure, I can help you on that. Are you looking for sunscreen for any of your upcoming trip ?",
+                                            "image": {
+                  "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRPpL4bGSmEIPeiXi7afYDK9sRfhsK5ERPLlzkKyroqhuNQ-g",
+                  "accessibilityText": "Bot"
+                },
+,
                             "buttons": [
                                 {
-                                    "title": "This is a button",
+                                   "title": "walmart",
                                     "openUrlAction": {
-                                        "url": "https://assistant.google.com/"
+                                         "url": "http://walmart.com"
                                     }
                                 }
                             ],
