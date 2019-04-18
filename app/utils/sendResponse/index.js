@@ -55,13 +55,13 @@ var sendResponse = function(responseToUser, version,  next) {
           "items": [
             {
               "simpleResponse": {
-                "textToSpeech": "Sure, I can help you on that. Are you looking for sunscreen for any of your upcoming trip ?"
+                "textToSpeech": "This is BE Json Response"
               }
             },
             {
               "basicCard": {
                 "title": "Walbot",
-                "formattedText": "Sure, I can help you on that. Are you looking for sunscreen for any of your upcoming trip ?",
+                "formattedText": "This is BE Json Response",
                 "image": {
                   "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRPpL4bGSmEIPeiXi7afYDK9sRfhsK5ERPLlzkKyroqhuNQ-g",
                   "accessibilityText": "Bot"
@@ -78,7 +78,18 @@ var sendResponse = function(responseToUser, version,  next) {
               }
             }
           ]
-        }
+        },
+        "contextOut": [
+          {
+            "name": "3_trip_confirmation-followup",
+            "lifespan": 2,
+            "parameters": {
+              "location": "Florida",
+              "date": "5th May"
+            }
+          }
+        ]
+
       }
     }
   }
