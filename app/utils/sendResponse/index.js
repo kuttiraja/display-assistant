@@ -48,42 +48,39 @@ var sendResponse = function(responseToUser, version,  next) {
   //     }
   // }
   responseJson = {
-        "payload": {
-        "google": {
-            "expectUserResponse": true,
-            "richResponse": {
-                "items": [
-                                {
+    "payload": {
+      "google": {
+        "expectUserResponse": true,
+        "richResponse": {
+          "items": [
+            {
               "simpleResponse": {
                 "textToSpeech": "Sure, I can help you on that. Are you looking for sunscreen for any of your upcoming trip ?"
               }
-            }
-,
-                    {
-                        "basicCard": {
-                            "title": "Walbot",
-                           "formattedText": "Sure, I can help you on that. Are you looking for sunscreen for any of your upcoming trip ?",
-                                            "image": {
+            },
+            {
+              "basicCard": {
+                "title": "Walbot",
+                "formattedText": "Sure, I can help you on that. Are you looking for sunscreen for any of your upcoming trip ?",
+                "image": {
                   "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRPpL4bGSmEIPeiXi7afYDK9sRfhsK5ERPLlzkKyroqhuNQ-g",
                   "accessibilityText": "Bot"
                 },
-,
-                            "buttons": [
-                                {
-                                   "title": "walmart",
-                                    "openUrlAction": {
-                                         "url": "http://walmart.com"
-                                    }
-                                }
-                            ],
-                            "imageDisplayOptions": "CROPPED"
-                        }
+                "buttons": [
+                  {
+                    "title": "walmart",
+                    "openUrlAction": {
+                      "url": "http://walmart.com"
                     }
+                  }
                 ]
-            }
-        }
-    }
 
+              }
+            }
+          ]
+        }
+      }
+    }
   }
   
   console.log('Conversation Engine Response : ' + JSON.stringify(responseJson,undefined,2));
