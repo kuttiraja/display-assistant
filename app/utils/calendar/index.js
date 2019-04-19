@@ -2,7 +2,7 @@ const fs = require('fs');
 const readline = require('readline');
 const {google} = require('googleapis');
 const sndrsp = require("../../utils/sendResponse")
-const appconst = require("../../core")
+const {appconst} = require("../../core")
 
 // If modifying these scopes, delete token.json.
 const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
@@ -142,7 +142,7 @@ module.exports.upcomingEvents = async function(req,res, next) {
             else if(upcomingtrip.length === 1) {
                 message += `Yeah. I see, ${upcomingtrip.length} upcoming trip. your appointment is`
                 tripDate = new Date(upcomingtrip[0].date)
-                message += ` on ${tripDate.getDate()}th ${appconst.getMonth(upcomingtrip[0].date)} to ${upcomingtrip[0].location}`
+                message += ` on ${tripDate.getDate()}th ${appconst.getMonth(tripDate)} to ${upcomingtrip[0].location}`
                 message += ` Could you please confirm it?`
             }
             else {
@@ -189,7 +189,7 @@ module.exports.upcomingEvents = async function(req,res, next) {
                     "parameters": 
                     {
                         "location": upcomingtrip[0].location,
-                        "date": upcomingtrip[0].date.getDate() + "th " + appconst.getMonth(upcomingtrip[0].date)
+                        "date": tripDate.getDate() + "th " + appconst.getMonth(tripDate)
                     }
                 }
             ],
