@@ -184,12 +184,13 @@ module.exports.upcomingEvents = async function(req,res, next) {
             },
             contextOut: [
                 {
-                    "name": "3_trip_confirmation-followup",
-                    "lifespan": 2,
+                    "name": "product_input",
+                    "lifespan": 1,
                     "parameters": 
                     {
                         "location": upcomingtrip[0].location,
-                        "date": tripDate.getDate() + "th " + appconst.getMonth(tripDate)
+                        "date": tripDate.getDate() + "th " + appconst.getMonth(tripDate),
+                        "productname": "sunscreen"
                     }
                 }
             ],
