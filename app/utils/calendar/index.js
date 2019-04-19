@@ -182,7 +182,7 @@ module.exports.upcomingEvents = async function(req,res, next) {
                 }                    
                 ]
             },
-            contextOut: [
+            outputContexts: [
                 {
                     "name": req.body.session+"/contexts/product_input",
                     "lifespan": 1,
