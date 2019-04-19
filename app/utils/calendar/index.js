@@ -184,7 +184,7 @@ module.exports.upcomingEvents = async function(req,res, next) {
             },
             contextOut: [
                 {
-                    "name": "product_input",
+                    "name": req.body.session+"/contexts/product_input",
                     "lifespan": 1,
                     "parameters": 
                     {
