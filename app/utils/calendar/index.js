@@ -2,6 +2,7 @@ const fs = require('fs');
 const readline = require('readline');
 const {google} = require('googleapis');
 const sndrsp = require("../../utils/sendResponse")
+const appconst = require("../../core")
 
 // If modifying these scopes, delete token.json.
 const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
@@ -67,16 +68,18 @@ function getAccessToken(oAuth2Client, callback) {
 function listEvents(auth) {
     // console.log("Inside List Events")
     const calendar = google.calendar({version: 'v3', auth});
+    // console.log("Test1")
     return new Promise((resolve, reject) => {
       calendar.events.list({
         calendarId: 'primary',
         timeMin: (new Date()).toISOString(),
-        maxResults: 10,
+        maxResults: 1,
         singleEvents: true,
         orderBy: 'startTime',
       }, (err, res) => {
         if(err) reject(err);
         else {
+            // console.log(res.data.items)
           resolve(res.data.items)
         }
       })
@@ -97,9 +100,12 @@ async function getCalendarEvents(callback) {
     events = [];
     await getData('credentials.json')
     .then((content) => {
+        // console.log(content)
         authorize(JSON.parse(content), (auth) => {
+            console.log("Authorised")
             var listPromise = listEvents(auth)
             listPromise.then((events) => {
+                // console.log(events)
                 callback(null, events);
             }, (err) => {
                 callback(err, null);
@@ -116,8 +122,9 @@ module.exports.upcomingEvents = async function(req,res, next) {
         }
         else {
             upcomingtrip = []
+            // console.log(events)
             events.forEach((event) => {
-            if(event.summary.search("Flight to") === 0)
+            if(event.summary.search("Flights to") === 0)
                 {
                     location = event.summary.substr("Flight to ".length)
                     upcomingtrip.push({"location" : location, "date" : event.start.dateTime})
@@ -134,36 +141,67 @@ module.exports.upcomingEvents = async function(req,res, next) {
             }
             else if(upcomingtrip.length === 1) {
                 message += `Yeah. I see, ${upcomingtrip.length} upcoming trip. your appointment is`
-                message += ` on ${upcomingtrip[0].date} at ${upcomingtrip[0].location}.`
+                message += ` on ${upcomingtrip[0].date.getDate()}th ${appconst.getMonth(upcomingtrip[0].date)} to ${upcomingtrip[0].location}`
                 message += ` Could you please confirm it?`
             }
             else {
                 message += `No Upcoming Trips`
             }
             console.log(message); 
-        }    
+        // }    
         
         let responseJson = {
-            speech: message, 
-            outputContexts: [{
-            //   'name': 'awaiting_checksum', 
-            //   'lifespan': 1, 
-            //   'parameters': {
-            //     "userid": userid,
-            //     "slotId": slotId,
-            //     "aisle": aisle,
-            //     "tripId": tripId
-            //   }
-            }, 
-            { 'name': 'awaiting_pick', 
-              'lifespan': 0, 
-              'parameters': {} 
-            }],
-            session: req.body.session
-          };
-          return res.json(sndrsp.sendResponse(message, "V2"/*version*/, next));
+            "payload" : {
+                "google" : {
+            expectUserResponse: true,
+            richResponse: {
+                "items": [ {
+                    "simpleResponse": {
+                        "textToSpeech": message
+                    }
+                },
+                {
+                    "basicCard": {
+                        "title": appconst.title,
+                        "formattedText": message,
+                        "image": {
+                            "url": appconst.imageUrl,
+                            "accessibilityText": appconst.accessibilityText
+                        },
+                        "buttons": [
+                            {
+                                "title": appconst.buttonTitle,
+                                "openUrlAction": {
+                                    "url": appconst.buttonUrl
+                                }
+                            }
+                        ]
+
+                    }
+                }                    
+                ]
+            },
+            contextOut: [
+                {
+                    "name": "3_trip_confirmation-followup",
+                    "lifespan": 2,
+                    "parameters": 
+                    {
+                        "location": upcomingtrip[0].location,
+                        "date": upcomingtrip[0].date.getDate() + "th " + appconst.getMonth(upcomingtrip[0].date)
+                    }
+                }
+            ],
+         
+          session: req.body.session
+          }
+        }
+    }
+          res.status(200).send(responseJson)
+        //   return res.json(sndrsp.sendResponse(message, "V2"/*version*/, next));
 
         // res.status(200).send(message);
+}
     });
     
 }
