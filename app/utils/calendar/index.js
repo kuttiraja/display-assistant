@@ -141,7 +141,8 @@ module.exports.upcomingEvents = async function(req,res, next) {
             }
             else if(upcomingtrip.length === 1) {
                 message += `Yeah. I see, ${upcomingtrip.length} upcoming trip. your appointment is`
-                message += ` on ${upcomingtrip[0].date.getDate()}th ${appconst.getMonth(upcomingtrip[0].date)} to ${upcomingtrip[0].location}`
+                tripDate = new Date(upcomingtrip[0].date)
+                message += ` on ${tripDate.getDate()}th ${appconst.getMonth(upcomingtrip[0].date)} to ${upcomingtrip[0].location}`
                 message += ` Could you please confirm it?`
             }
             else {
