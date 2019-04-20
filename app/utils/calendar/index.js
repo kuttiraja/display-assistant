@@ -197,7 +197,19 @@ module.exports.upcomingEvents = async function(req,res, next) {
          
           session: req.body.session
           }
-        }
+        },
+        outputContexts: [
+            {
+                "name": req.body.session+"/contexts/product_input",
+                "lifespan": 1,
+                "parameters": 
+                {
+                    "location": upcomingtrip[0].location,
+                    "date": tripDate.getDate() + "th " + appconst.getMonth(tripDate),
+                    "productname": "sunscreen"
+                }
+            }
+        ]
     }
           res.status(200).send(responseJson)
         //   return res.json(sndrsp.sendResponse(message, "V2"/*version*/, next));
