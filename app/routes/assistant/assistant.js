@@ -10,8 +10,63 @@ async function getHandler(req, res, next) {
 }
 
 async function postHandler(req, res, next) {
-	console.log('request: ', req.body)
-        await calendar.upcomingEvents(req, res, next);
+        console.log('request: ', req.body);
+        
+        if("product" === req.body.queryResult.action) {
+                responseJson = {
+                        "fulfillmentText": "This is a text response",
+                        "fulfillmentMessages": [
+                          {
+                            "card": {
+                              "title": "card title",
+                              "subtitle": "card text",
+                              "imageUri": "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
+                              "buttons": [
+                                {
+                                  "text": "button text",
+                                  "postback": "https://assistant.google.com/"
+                                }
+                              ]
+                            }
+                          }
+                        ],
+                        "source": "example.com",
+                        "payload": {
+                          "google": {
+                            "expectUserResponse": true,
+                            "richResponse": {
+                              "items": [
+                                {
+                                  "simpleResponse": {
+                                    "textToSpeech": "this is a simple response"
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "outputContexts": [
+                          {
+                            "name": req.body.session + "/contexts/product_input",
+                            "lifespanCount": 1,
+                            "parameters": {
+                              "location": "florida",
+                              "date" : "10th May",
+                              "product" : "sunscreen"
+                            }
+                          }
+                        ],
+                        "followupEventInput": {
+                          "name": "product_input",
+                          "languageCode": "en-US",
+                          "parameters": {
+                            "location": "param value"
+                          }
+                        }
+                      }
+        }
+        res.status(200).send(responseJson);
+        // await calendar.upcomingEvents(req, res, next);
         
         // action = req.body.action
         // parameters = req.body.parameters 
