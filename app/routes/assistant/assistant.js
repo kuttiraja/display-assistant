@@ -14,7 +14,7 @@ async function postHandler(req, res, next) {
         
         // if("product" === req.body.queryResult.action) {
                 responseJson = {
-                        // "fulfillmentText" : "This is sample text",
+                        "fulfillmentText" : "This is sample text",
                         "fulfillmentMessages": [
                           {
                             "card": {
