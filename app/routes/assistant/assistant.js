@@ -14,37 +14,22 @@ async function postHandler(req, res, next) {
         
         if("product" === req.body.queryResult.action) {
                 responseJson = {
-                        "fulfillmentText": "This is a text response",
-                        // "fulfillmentMessages": [
-                        //   {
-                        //     "card": {
-                        //       "title": "card title",
-                        //       "subtitle": "card text",
-                        //       "imageUri": "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
-                        //       "buttons": [
-                        //         {
-                        //           "text": "button text",
-                        //           "postback": "https://assistant.google.com/"
-                        //         }
-                        //       ]
-                        //     }
-                        //   }
-                        // ],
-                        // "source": "example.com",
-                        // "payload": {
-                        //   "google": {
-                        //     "expectUserResponse": true,
-                        //     "richResponse": {
-                        //       "items": [
-                        //         {
-                        //           "simpleResponse": {
-                        //             "textToSpeech": "this is a simple response"
-                        //           }
-                        //         }
-                        //       ]
-                        //     }
-                        //   }
-                        // },
+                        
+                        "fulfillmentMessages": [
+                          {
+                            "card": {
+                              "title": "card title",
+                              "subtitle": "card text",
+                              "imageUri": "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
+                              "buttons": [
+                                {
+                                  "text": "button text",
+                                  "postback": "https://assistant.google.com/"
+                                }
+                              ]
+                            }
+                          }
+                        ],
                         "outputContexts": [
                           {
                             "name": req.body.session + "/contexts/product_input",
@@ -55,7 +40,7 @@ async function postHandler(req, res, next) {
                               "product" : "sunscreen"
                             }
                           }
-                        ],
+                        ]
                         // "followupEventInput": {
                         //   "name": "product_input",
                         //   "languageCode": "en-US",
