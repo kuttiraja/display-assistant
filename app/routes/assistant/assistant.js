@@ -12,7 +12,7 @@ async function getHandler(req, res, next) {
 async function postHandler(req, res, next) {
         console.log('request: ', req.body);
         
-        if("product" === req.body.queryResult.action) {
+        // if("product" === req.body.queryResult.action) {
                 responseJson = {
                         
                         "fulfillmentMessages": [
@@ -49,7 +49,7 @@ async function postHandler(req, res, next) {
                         //   }
                         // }
                       }
-        }
+        // }
         res.status(200).send(responseJson);
         // await calendar.upcomingEvents(req, res, next);
         
