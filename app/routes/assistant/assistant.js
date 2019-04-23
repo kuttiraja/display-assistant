@@ -17,16 +17,23 @@ async function postHandler(req, res, next) {
                         "fulfillmentText" : "This is sample text",
                         "fulfillmentMessages": [
                           {
-                            "card": {
+                            "basicCard": {
                               "title": "card title",
-                              "subtitle": "card text",
-                              "imageUri": "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
+                        //       "subtitle": "card text",
+                                "image" : {
+                                        "url": "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
+                                        "accessibilityText": "Google Logo"
+                                },
+                              
                               "buttons": [
                                 {
-                                  "text": "button text",
-                                  "postback": "https://assistant.google.com/"
+                                  "title": "button text",
+                                  "openUrlAction": {
+                                        "url" : "https://assistant.google.com/"
+                                   }
                                 }
-                              ]
+                              ],
+                              "imageDisplayOptions": "WHITE"
                             }
                           }
                         ],
