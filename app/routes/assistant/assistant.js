@@ -15,13 +15,22 @@ async function postHandler(req, res, next) {
         // if("product" === req.body.queryResult.action) {
                 responseJson = {
                         "fulfillmentText" : "This is sample text",
-                        "fulfillmentMessages": [
+                        "fulfillmentMessages": [{
+                          "platform": "ACTIONS_ON_GOOGLE",
+                          "simpleResponses": {
+                              "simpleResponses": [{
+                                  "textToSpeech": "Hi! How are you doing?"
+                              }]
+                          }
+                      },
                           {
+                            "platform": "ACTIONS_ON_GOOGLE",
                             "basicCard": {
                               "title": "card title",
-                        //       "subtitle": "card text",
+                              "subtitle": "card text",
+                              "formattedText": "Text",
                                 "image" : {
-                                        "url": "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
+                                        "imageUri": "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
                                         "accessibilityText": "Google Logo"
                                 },
                               
@@ -29,11 +38,11 @@ async function postHandler(req, res, next) {
                                 {
                                   "title": "button text",
                                   "openUrlAction": {
-                                        "url" : "https://assistant.google.com/"
+                                        "url" : "https://google.com/"
                                    }
                                 }
                               ],
-                              "imageDisplayOptions": "WHITE"
+                              // "imageDisplayOptions": "WHITE"
                             }
                           }
                         ],
