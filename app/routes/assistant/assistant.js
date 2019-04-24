@@ -37,8 +37,8 @@ async function postHandler(req, res, next) {
                               "buttons": [
                                 {
                                   "title": "button text",
-                                  "openUrlAction": {
-                                        "url" : "https://google.com/"
+                                  "openUriAction": {
+                                        "uri" : "https://google.com/"
                                    }
                                 }
                               ],
