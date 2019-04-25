@@ -31,9 +31,8 @@ async function postHandler(req, res, next) {
                               "formattedText": "Sunny Condition",
                                 "image" : {
                                         "imageUri": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBphbuPuMDxxLL2seMJV30kbcMHcZLVKsufOsOIzkZgZRRJAb9",
-                                        "accessibilityText": "Sunny",
-                                        "height":"185px",
-                                        "width":"595px"
+                                        "accessibilityText": "Sunny"
+                                        
                                 },
                               
                               "buttons": [
