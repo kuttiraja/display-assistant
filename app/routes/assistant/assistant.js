@@ -25,33 +25,27 @@ async function postHandler(req, res, next) {
                       },
                           {
                             "platform": "ACTIONS_ON_GOOGLE",
-        "carouselSelect": {
-		
-          "items": [
-            {
-              "info": {
-                "key": "India trip"
-              },
-              "title": "Trip to India",
-              "description": "on 3rd May",
-              "image": {
-                "imageUri": "https://lh3.googleusercontent.com/Yf-YApid5GDv-f1AqHqGyCqpTE_YSBuVXgjnbEBBDAAPRInugJ8_0nSWkfVs6veB11M",
-                "accessibilityText": "Google Flights"
-              }
-            },
-            {
-              "info": {
-                "key": "Florida Trip"
-              },
-              "title": "Trip to Florida",
-              "description": "on 4th June",
-              "image": {
-                "imageUri": "https://cdn2.vectorstock.com/i/1000x1000/18/91/blue-cruise-ship-symbol-logo-vector-21351891.jpg",
-                "accessibilityText": "Cruise Trip"
-              }
-            }
-          ]
-        }
+                            "basicCard": {
+                              "title": "Weather",
+                              "subtitle": "",
+                              "formattedText": "Sunny Condition",
+                                "image" : {
+                                        "imageUri": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBphbuPuMDxxLL2seMJV30kbcMHcZLVKsufOsOIzkZgZRRJAb9",
+                                        "accessibilityText": "Sunny",
+                                        "height":"185px",
+                                        "width":"595px"
+                                },
+                              
+                              "buttons": [
+                                {
+                                  "title": "button text",
+                                  "openUriAction": {
+                                        "uri" : "https://google.com/"
+                                   }
+                                }
+                              ],
+                              // "imageDisplayOptions": "WHITE"
+                            }
                           }
                         ],
                         "outputContexts": [
