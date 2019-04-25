@@ -26,6 +26,7 @@ async function postHandler(req, res, next) {
                           {
                             "platform": "ACTIONS_ON_GOOGLE",
         "carouselSelect": {
+		"title": "Trips",
           "items": [
             {
               "info": {
